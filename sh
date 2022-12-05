@@ -1,0 +1,1 @@
+docker run -it --ipc=host --env="DISPLAY" -v $(pwd):/home/video_cap -v /tmp/.X11-unix:/tmp/.X11-unix:rw lubo1994/mv-extractor:latest "$@" python3 extract_mvs.py vid_h264.mp4 --preview --verbose
