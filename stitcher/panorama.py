@@ -265,9 +265,10 @@ class Stitcher:
             #ds = ds/ds[-1]
             offsety = abs(int(f1[1]))
             offsetx = abs(int(f1[0]))
-            dsize = (int(ds[0])+offsetx, int(ds[1]) + offsety)
+            #dsize = (int(ds[0])+offsetx, int(ds[1]) + offsety)
             historyOffsetX += offsetx
             historyOffsetY += offsety
+            dsize = (max(int(ds[0])+historyOffsetX, b.shape[1]+historyOffsetX), max(int(ds[1]) + historyOffsetY,b.shape[0]+historyOffsetY))
             self.Hmatrixs.append(xh)
             print("image dsize =>", dsize)
             print("entering warpPerspective")
@@ -306,8 +307,8 @@ class Stitcher:
         
         result = cv2.warpPerspective(imageA, H,
         (imageA.shape[1] + imageB.shape[1], imageA.shape[0]))
-        #cv2.imshow("result", result)
-        #cv2.waitKey()
+        cv2.imshow("result", result)
+        cv2.waitKey()
         #result[0:imageB.shape[0], 0:imageB.shape[1]] = imageB
         for i in range(imageB.shape[0]):
             for j in range(imageB.shape[1]):

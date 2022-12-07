@@ -7,40 +7,34 @@ import cv2
 
 # load the two images and resize them to have a width of 400 pixels
 # (for faster processing)
-imageA = cv2.imread("images/frame_100.jpg")
-imageB = cv2.imread("images/frame_20.jpg")
+imageA = cv2.imread("output/test3_1.jpg")
+imageB = cv2.imread("output/result_test3.jpg")
 
 image_list = []
-image_list.append(cv2.imread("images/frame_345.jpg"))
-image_list.append(cv2.imread("images/frame_300.jpg"))
-image_list.append(cv2.imread("images/frame_275.jpg"))
+'''
+image_list.append(cv2.imread("output/frame_590.jpg"))
+image_list.append(cv2.imread("output/frame_550.jpg"))
+image_list.append(cv2.imread("output/frame_500.jpg"))
 #image_list.append(cv2.imread("images/frame_265.jpg"))
 #image_list.append(cv2.imread("images/frame_260.jpg"))
 #image_list.append(cv2.imread("images/frame_255.jpg"))
 
-image_list.append(cv2.imread("images/frame_250.jpg"))
+image_list.append(cv2.imread("output/frame_450.jpg"))
 #image_list.append(cv2.imread("images/frame_235.jpg"))
-image_list.append(cv2.imread("images/frame_225.jpg"))
+image_list.append(cv2.imread("output/frame_400.jpg"))
+'''
 
+image_list.append(cv2.imread("test3/frame_290.jpg"))
+image_list.append(cv2.imread("test3/frame_260.jpg"))
+image_list.append(cv2.imread("test3/frame_200.jpg"))
+image_list.append(cv2.imread("test3/frame_170.jpg"))
+image_list.append(cv2.imread("test3/frame_140.jpg"))
 
-image_list.append(cv2.imread("images/frame_200.jpg"))
-image_list.append(cv2.imread("images/frame_175.jpg"))
-image_list.append(cv2.imread("images/frame_150.jpg"))
-image_list.append(cv2.imread("images/frame_125.jpg"))
-image_list.append(cv2.imread("images/frame_100.jpg"))
+image_list.append(cv2.imread("test3/frame_110.jpg"))
+image_list.append(cv2.imread("test3/frame_80.jpg"))
+image_list.append(cv2.imread("test3/frame_50.jpg"))
 
-image_list.append(cv2.imread("images/frame_75.jpg"))
-image_list.append(cv2.imread("images/frame_50.jpg"))
-image_list.append(cv2.imread("images/frame_20.jpg"))
 ''''''
-'''
-image_list.append(cv2.imread("images/S1.jpg"))
-image_list.append(cv2.imread("images/S2.jpg"))
-image_list.append(cv2.imread("images/S3.jpg"))
-
-image_list.append(cv2.imread("images/S5.jpg"))
-image_list.append(cv2.imread("images/S6.jpg"))
-'''
 
 
 
@@ -68,11 +62,11 @@ resultA = stitcher.stitch([image_list[0], image_list[1]], showMatches=False)
 resultB = stitcher.stitch([image_list[2], image_list[3]], showMatches=False)
 result = stitcher.stitch([resultA, resultB], showMatches=False)
 '''
-#(result, vis) = stitcher.stitch([imageA, imageB], showMatches=True)
+(result, vis) = stitcher.stitch([imageA, imageB], showMatches=True)
 
 #stitcher.leftshift()
 #stitcher.rightshift()
-stitcher.computeHmatrix()
+#stitcher.computeHmatrix()
 
 # show the images
 #cv2.imshow("Image A", imageA)
@@ -81,5 +75,5 @@ stitcher.computeHmatrix()
 #cv2.imshow("Result", stitcher.leftImage)
 #cv2.waitKey(0)
 #result = stitcher.stitch([imageA, imageB], showMatches=False)
-cv2.imwrite("Stitched_Panorama.png", stitcher.leftImage)
-#cv2.imwrite("result1.png", result)
+#cv2.imwrite("Stitched_Panorama.png", stitcher.leftImage)
+cv2.imwrite("result_test3.png", result)
