@@ -27,6 +27,7 @@ class Stitcher:
             self.images[i] = Image_Cyl
             self.masks.append(Image_Mask)
             self.images[i] = cv2.resize(self.images[i],None,fx=0.5, fy=0.5, interpolation = cv2.INTER_CUBIC)
+            self.masks[i] = cv2.resize(self.masks[i],None,fx=0.5, fy=0.5, interpolation = cv2.INTER_CUBIC)
             if(i<=self.centerIdx):
                 self.left_list.append(self.images[i])
             else:
@@ -271,10 +272,10 @@ class Stitcher:
             print("image dsize =>", dsize)
             print("entering warpPerspective")
             tmp = cv2.warpPerspective(tmp, xh, dsize)
-            tmp[0:dsize[0], historyOffsetX:dsize[1]] = [0,0,0]
-            tmp[historyOffsetY:b.shape[0]+historyOffsetY, historyOffsetX:b.shape[1]+historyOffsetX] = b
-            #cylinder = tmp[historyOffsetY:b.shape[0]+historyOffsetY, historyOffsetX:b.shape[1]+historyOffsetX]
-            #tmp[historyOffsetY:b.shape[0]+historyOffsetY, historyOffsetX:b.shape[1]+historyOffsetX] = cv2.bitwise_or(b, cv2.bitwise_and(cylinder, cv2.bitwise_not(self.masks[i])))
+            #tmp[0:dsize[0], historyOffsetX:dsize[1]] = [0,0,0]
+            #tmp[historyOffsetY:b.shape[0]+historyOffsetY, historyOffsetX:b.shape[1]+historyOffsetX] = b
+            cylinder = tmp[historyOffsetY:b.shape[0]+historyOffsetY, historyOffsetX:b.shape[1]+historyOffsetX]
+            tmp[historyOffsetY:b.shape[0]+historyOffsetY, historyOffsetX:b.shape[1]+historyOffsetX] = cv2.bitwise_or(b, cv2.bitwise_and(cylinder, cv2.bitwise_not(self.masks[i])))
             print("done warpPerspective")
             #ixh = np.linalg.inv(xh)
             #max_length = b.shape[1]+offsetx
@@ -305,12 +306,14 @@ class Stitcher:
         
         result = cv2.warpPerspective(imageA, H,
         (imageA.shape[1] + imageB.shape[1], imageA.shape[0]))
+        #cv2.imshow("result", result)
+        #cv2.waitKey()
         #result[0:imageB.shape[0], 0:imageB.shape[1]] = imageB
         for i in range(imageB.shape[0]):
             for j in range(imageB.shape[1]):
                 if (imageB[i,j][0] != 0 and imageB[i,j][1] != 0 and imageB[i,j][2]) != 0:
                     result[i,j] = imageB[i,j]
-        
+        cv2.imwrite("imageB.jpg", result[0:imageB.shape[0],0:imageB.shape[1]])
         #result = cv2.warpPerspective(imageB, H,
         #(imageB.shape[1] + imageA.shape[1], imageB.shape[0]))
         #result[0:imageA.shape[0], 0:imageA.shape[1]] = imageA

@@ -11,16 +11,15 @@ imageA = cv2.imread("images/frame_100.jpg")
 imageB = cv2.imread("images/frame_20.jpg")
 
 image_list = []
-
 image_list.append(cv2.imread("images/frame_345.jpg"))
 image_list.append(cv2.imread("images/frame_300.jpg"))
 image_list.append(cv2.imread("images/frame_275.jpg"))
-image_list.append(cv2.imread("images/frame_265.jpg"))
-image_list.append(cv2.imread("images/frame_260.jpg"))
-image_list.append(cv2.imread("images/frame_255.jpg"))
+#image_list.append(cv2.imread("images/frame_265.jpg"))
+#image_list.append(cv2.imread("images/frame_260.jpg"))
+#image_list.append(cv2.imread("images/frame_255.jpg"))
 
 image_list.append(cv2.imread("images/frame_250.jpg"))
-image_list.append(cv2.imread("images/frame_235.jpg"))
+#image_list.append(cv2.imread("images/frame_235.jpg"))
 image_list.append(cv2.imread("images/frame_225.jpg"))
 
 
@@ -30,9 +29,9 @@ image_list.append(cv2.imread("images/frame_150.jpg"))
 image_list.append(cv2.imread("images/frame_125.jpg"))
 image_list.append(cv2.imread("images/frame_100.jpg"))
 
-#image_list.append(cv2.imread("images/frame_75.jpg"))
-#image_list.append(cv2.imread("images/frame_50.jpg"))
-#image_list.append(cv2.imread("images/frame_20.jpg"))
+image_list.append(cv2.imread("images/frame_75.jpg"))
+image_list.append(cv2.imread("images/frame_50.jpg"))
+image_list.append(cv2.imread("images/frame_20.jpg"))
 ''''''
 '''
 image_list.append(cv2.imread("images/S1.jpg"))
@@ -81,4 +80,6 @@ stitcher.computeHmatrix()
 #cv2.imshow("Keypoint Matches", vis)
 #cv2.imshow("Result", stitcher.leftImage)
 #cv2.waitKey(0)
+#result = stitcher.stitch([imageA, imageB], showMatches=False)
 cv2.imwrite("Stitched_Panorama.png", stitcher.leftImage)
+#cv2.imwrite("result1.png", result)
