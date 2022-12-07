@@ -7,11 +7,11 @@ import cv2
 
 # load the two images and resize them to have a width of 400 pixels
 # (for faster processing)
-imageA = cv2.imread("output/test3_1.jpg")
-imageB = cv2.imread("output/result_test3.jpg")
+#imageA = cv2.imread("output/test3_1.jpg")
+#imageB = cv2.imread("output/result_test3.jpg")
 
 image_list = []
-'''
+
 image_list.append(cv2.imread("output/frame_590.jpg"))
 image_list.append(cv2.imread("output/frame_550.jpg"))
 image_list.append(cv2.imread("output/frame_500.jpg"))
@@ -22,8 +22,8 @@ image_list.append(cv2.imread("output/frame_500.jpg"))
 image_list.append(cv2.imread("output/frame_450.jpg"))
 #image_list.append(cv2.imread("images/frame_235.jpg"))
 image_list.append(cv2.imread("output/frame_400.jpg"))
-'''
 
+'''
 image_list.append(cv2.imread("test3/frame_290.jpg"))
 image_list.append(cv2.imread("test3/frame_260.jpg"))
 image_list.append(cv2.imread("test3/frame_200.jpg"))
@@ -33,7 +33,7 @@ image_list.append(cv2.imread("test3/frame_140.jpg"))
 image_list.append(cv2.imread("test3/frame_110.jpg"))
 image_list.append(cv2.imread("test3/frame_80.jpg"))
 image_list.append(cv2.imread("test3/frame_50.jpg"))
-
+'''
 ''''''
 
 
@@ -62,18 +62,18 @@ resultA = stitcher.stitch([image_list[0], image_list[1]], showMatches=False)
 resultB = stitcher.stitch([image_list[2], image_list[3]], showMatches=False)
 result = stitcher.stitch([resultA, resultB], showMatches=False)
 '''
-(result, vis) = stitcher.stitch([imageA, imageB], showMatches=True)
+#(result, vis) = stitcher.stitch([imageA, imageB], showMatches=True)
 
 #stitcher.leftshift()
 #stitcher.rightshift()
-#stitcher.computeHmatrix()
+stitcher.computeHmatrix()
 
 # show the images
 #cv2.imshow("Image A", imageA)
 #cv2.imshow("Image B", imageB)
 #cv2.imshow("Keypoint Matches", vis)
-#cv2.imshow("Result", stitcher.leftImage)
-#cv2.waitKey(0)
+cv2.imshow("Result", stitcher.leftImage)
+cv2.waitKey(0)
 #result = stitcher.stitch([imageA, imageB], showMatches=False)
-#cv2.imwrite("Stitched_Panorama.png", stitcher.leftImage)
-cv2.imwrite("result_test3.png", result)
+cv2.imwrite("Stitched_Panorama.png", stitcher.leftImage)
+#cv2.imwrite("result_test3.png", result)

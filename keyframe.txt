@@ -1,0 +1,13 @@
+rotate frames:
+
+590, 550, 500, 450, 400
+
+image_list.append(cv2.imread("output/frame_590.jpg"))
+image_list.append(cv2.imread("output/frame_550.jpg"))
+image_list.append(cv2.imread("output/frame_500.jpg"))
+image_list.append(cv2.imread("output/frame_450.jpg"))
+image_list.append(cv2.imread("output/frame_400.jpg"))
+
+shift frames:
+
+100, 20
