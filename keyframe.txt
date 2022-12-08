@@ -10,4 +10,36 @@ image_list.append(cv2.imread("output/frame_400.jpg"))
 
 shift frames:
 
-100, 20
+100, 6
+
+6 => [1263  492  182  448] x, y, w, h
+转换后 [1.88727448e+03 5.04447598e+02 1.01038723e+00]
+1887, 504
+
+500, 450, 400, 350, 300
+(1,2,3,4,5)
+
+=> 5 rect (a,b,c,d,e)
+x 0 --------- 1920
+y
+0
+-
+-
+-
+1080
+
+1&2 H matrix
+1*Hmatrix 
+2+offset historyoffset=offset
+
+tempoary image
+
+2&3 H matrix
+historyOffset += offset
+(1*Hmatrix 2+offset)*Hmatrix 3+historyOffset
+
+e * H5matrix + Historyoffset5
+d * H4matrix + Historyoffset4
+
+H4 = H4 * H3 * H2 * H1 ?
+

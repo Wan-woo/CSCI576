@@ -7,8 +7,8 @@ import cv2
 
 # load the two images and resize them to have a width of 400 pixels
 # (for faster processing)
-#imageA = cv2.imread("output/test3_1.jpg")
-#imageB = cv2.imread("output/result_test3.jpg")
+imageA = cv2.imread("output/frame_100.jpg")
+imageB = cv2.imread("output/frame_6.jpg")
 
 image_list = []
 
@@ -66,14 +66,14 @@ result = stitcher.stitch([resultA, resultB], showMatches=False)
 
 #stitcher.leftshift()
 #stitcher.rightshift()
-stitcher.computeHmatrix()
+#stitcher.computeHmatrix()
 
 # show the images
 #cv2.imshow("Image A", imageA)
 #cv2.imshow("Image B", imageB)
 #cv2.imshow("Keypoint Matches", vis)
-cv2.imshow("Result", stitcher.leftImage)
-cv2.waitKey(0)
-#result = stitcher.stitch([imageA, imageB], showMatches=False)
-cv2.imwrite("Stitched_Panorama.png", stitcher.leftImage)
-#cv2.imwrite("result_test3.png", result)
+#cv2.imshow("Result", stitcher.leftImage)
+#cv2.waitKey(0)
+result = stitcher.stitch([imageA, imageB], showMatches=False)
+#cv2.imwrite("Stitched_Panorama.png", stitcher.leftImage)
+cv2.imwrite("result_test3_6_100.png", result)

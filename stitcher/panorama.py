@@ -12,6 +12,7 @@ class Stitcher:
         self.right_list = []
         self.Hmatrixs = []
         self.masks = []
+        self.offsets = []
         self.prepare_lists()
 
     def prepare_lists(self):
@@ -269,7 +270,11 @@ class Stitcher:
             historyOffsetX += offsetx
             historyOffsetY += offsety
             dsize = (max(int(ds[0])+historyOffsetX, b.shape[1]+historyOffsetX), max(int(ds[1]) + historyOffsetY,b.shape[0]+historyOffsetY))
+            
             self.Hmatrixs.append(xh)
+            
+
+
             print("image dsize =>", dsize)
             print("entering warpPerspective")
             tmp = cv2.warpPerspective(tmp, xh, dsize)
@@ -304,7 +309,6 @@ class Stitcher:
         # otherwise, apply a perspective warp to stitch the images
         # together
         (matches, H, status) = M
-        
         result = cv2.warpPerspective(imageA, H,
         (imageA.shape[1] + imageB.shape[1], imageA.shape[0]))
         cv2.imshow("result", result)
