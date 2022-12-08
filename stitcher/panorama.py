@@ -229,6 +229,28 @@ class Stitcher:
     def rightHmatrix(self):
         pass
 
+
+    def fillRects(self, rects, frame_numbers):
+        test_image = np.zeros_like(self.leftImage)
+        for i in range(len(rects)):
+            rect = rects[i]
+            (x, y, w, h) = rect
+            image = cv2.imread("test3_origin/"+str(frame_numbers[i])+".jpg")
+            mask = np.zeros_like(image)
+            mask[y:y+h, x:x+w] = image[y:y+h, x:x+w]
+            mask = cv2.resize(mask,None,fx=0.5, fy=0.5, interpolation = cv2.INTER_CUBIC)
+            H = self.Hmatrixs[i]
+            test_image = cv2.warpPerspective(test_image, H, (test_image.shape[1], test_image.shape[0]))
+            offsetx = self.offsets[i][0]
+            offsety = self.offsets[i][1]
+            test_image[offsety:offsety+mask.shape[0], offsetx:offsetx+mask.shape[1]] = mask
+            cv2.imshow("tempoary", test_image)
+            cv2.waitKey()
+        cv2.imshow("masks", test_image)
+        cv2.waitKey()
+
+
+
     def computeHmatrix(self):
         # self.left_list = reversed(self.left_list)
         a = self.images[0]
@@ -272,7 +294,7 @@ class Stitcher:
             dsize = (max(int(ds[0])+historyOffsetX, b.shape[1]+historyOffsetX), max(int(ds[1]) + historyOffsetY,b.shape[0]+historyOffsetY))
             
             self.Hmatrixs.append(xh)
-            
+            self.offsets.append((historyOffsetX, historyOffsetY))
 
 
             print("image dsize =>", dsize)
